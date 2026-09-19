@@ -20,6 +20,11 @@ async def main():
     # ΒΗΜΑ 3 — το νόμισμα: σε τυχαία θέση
     coin_x = random.randint(20, WIDTH - 20)
     coin_y = random.randint(20, HEIGHT - 20)
+    coin_rect = pygame.Rect(coin_x - 15, coin_y - 15, 30, 30)
+
+    # ΒΗΜΑ 4 - το σκόρ
+    score = 0
+    font = pygame.font.Font(None, 48)
 
     running = True
     while running:
@@ -40,10 +45,20 @@ async def main():
         if keys[pygame.K_DOWN]:
             player.y += speed
 
+        # Επαφή παίκτη και νομίσματος
+        if player.colliderect(coin_rect):
+            score += 1
+            coin_rect.x = random.randint(20, WIDTH - 20) - 15
+            coin_rect.y = random.randint(20, HEIGHT - 20) - 15
+
 
         # 3) ΖΩΓΡΑΦΙΚΗ
         screen.fill((15, 40, 60))
         pygame.draw.rect(screen, (80, 200, 120), player)
+        pygame.draw.circle(screen, (255, 209, 102), (coin_x + 15, coin_y + 15), 15)
+
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_text, (20, 20))
        
         pygame.display.flip()
 
