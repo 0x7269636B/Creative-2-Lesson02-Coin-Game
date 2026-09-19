@@ -44,6 +44,7 @@ async def main():
             player.y -= speed
         if keys[pygame.K_DOWN]:
             player.y += speed
+        player.clamp_ip(screen.get_rect())
 
         # Επαφή παίκτη και νομίσματος
         if player.colliderect(coin_rect):
