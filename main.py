@@ -28,6 +28,10 @@ async def main():
     score = 0
     font = pygame.font.Font(None, 48)
 
+    # ΒΗΜΑ 5 - Ο Εχθρός!!!!!!!!!!!!!!
+    enemy = pygame.Rect(100, 450, 50, 50)
+    enemy_speed = 3
+
     running = True
     while running:
         # 1) ΓΕΓΟΝΟΤΑ
@@ -56,10 +60,13 @@ async def main():
             coin_rect.x = coin_x - 15
             coin_rect.y = coin_y - 15
 
+        
+
         # 3) ΖΩΓΡΑΦΙΚΗ
         screen.fill((15, 40, 60))
         pygame.draw.rect(screen, (80, 200, 120), player)
         pygame.draw.circle(screen, (255, 209, 102), (coin_x, coin_y), 15)
+        pygame.draw.rect(screen, (255, 100, 100), enemy)
 
         score_text = font.render(f"Score: {score}", True, (255, 255, 255))
         screen.blit(score_text, (20, 20))
