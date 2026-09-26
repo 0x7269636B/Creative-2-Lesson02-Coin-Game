@@ -27,6 +27,7 @@ async def main():
     # ΒΗΜΑ 4 - το σκόρ
     score = 0
     font = pygame.font.Font(None, 48)
+    small_font = pygame.font.Font(None, 30)
 
     # ΒΗΜΑ 5 - Ο Εχθρός!!!!!!!!!!!!!!
     enemy = pygame.Rect(100, 450, 50, 50)
@@ -34,6 +35,9 @@ async def main():
     enemy_dir = 1
 
     running = True
+    game_over = False
+    won = False
+
     while running:
         # 1) ΓΕΓΟΝΟΤΑ
         for event in pygame.event.get():
@@ -68,9 +72,8 @@ async def main():
         if enemy.right >= WIDTH or enemy.left <= 0:
             enemy_dir *= -1
 
-
         if player.colliderect(enemy):
-            running = False
+            game_over = True
 
         # 3) ΖΩΓΡΑΦΙΚΗ
         screen.fill((15, 40, 60))
@@ -80,6 +83,15 @@ async def main():
 
         score_text = font.render(f"Score: {score}", True, (255, 255, 255))
         screen.blit(score_text, (20, 20))
+
+        if game_over:
+            if won:
+                message = "You WON!"
+            else:
+                message = "LOOSER!"
+
+            end_text = font.render(message, True, (255, 255, 255))
+            restart_text = small_font.render("R to Restart", True, (255, 255, 255))
 
         pygame.display.flip()
 
