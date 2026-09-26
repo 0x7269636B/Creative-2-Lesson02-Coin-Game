@@ -65,6 +65,9 @@ async def main():
         if enemy.right >= WIDTH or enemy.left <= 0:
             enemy_dir *= -1
 
+        if player.colliderect(enemy):
+            running = False
+
         # 3) ΖΩΓΡΑΦΙΚΗ
         screen.fill((15, 40, 60))
         pygame.draw.rect(screen, (80, 200, 120), player)
