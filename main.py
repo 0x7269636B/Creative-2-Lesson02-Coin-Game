@@ -61,9 +61,13 @@ async def main():
             coin_rect.x = coin_x - 15
             coin_rect.y = coin_y - 15
 
+            if score % 3 == 0:
+                enemy_speed += 1
+
         enemy.x += enemy_dir * enemy_speed
         if enemy.right >= WIDTH or enemy.left <= 0:
             enemy_dir *= -1
+
 
         if player.colliderect(enemy):
             running = False
