@@ -31,6 +31,7 @@ async def main():
     # ΒΗΜΑ 5 - Ο Εχθρός!!!!!!!!!!!!!!
     enemy = pygame.Rect(100, 450, 50, 50)
     enemy_speed = 3
+    enemy_dir = 1
 
     running = True
     while running:
@@ -60,7 +61,9 @@ async def main():
             coin_rect.x = coin_x - 15
             coin_rect.y = coin_y - 15
 
-        
+        enemy.x += enemy_dir * enemy_speed
+        if enemy.right >= WIDTH or enemy.left <= 0:
+            enemy_dir *= -1
 
         # 3) ΖΩΓΡΑΦΙΚΗ
         screen.fill((15, 40, 60))
