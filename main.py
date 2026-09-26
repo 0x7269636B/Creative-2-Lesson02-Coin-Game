@@ -1,11 +1,13 @@
 import asyncio
 import random
 import pygame  # noqa: F401 — ΜΗΝ το σβήσεις: το pygbag διαβάζει ΜΟΝΟ αυτό το αρχείο για imports
+import time
 
 # ---------------- Ρυθμίσεις ----------------
 WIDTH, HEIGHT = 800, 600
 FPS = 60
 
+random.seed(time.time_ns())
 
 async def main():
     pygame.init()
